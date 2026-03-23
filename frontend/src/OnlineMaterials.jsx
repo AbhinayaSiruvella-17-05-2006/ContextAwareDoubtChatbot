@@ -24,7 +24,7 @@ function OnlineMaterials({ setPage }) {
       );
 
       const data = await response.json();
-      setAnswer(data.answer || "No response from AI.");
+      setAnswer(data.response || data.answer || "No reply");
     } catch (error) {
       console.error(error);
       setAnswer("Error connecting to AI server.");
