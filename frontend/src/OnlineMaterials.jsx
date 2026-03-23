@@ -12,19 +12,24 @@ function OnlineMaterials({ setPage }) {
     setAnswer("");
 
     try {
+      const formData = new FormData();
+      formData.append("question", query);
+      formData.append("lang", "en");
+
       const response = await fetch(
-        "https://contextawaredoubtchatbot.onrender.com/", // adjust if needed
+        "https://contextawaredoubtchatbot.onrender.com/chat",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ question: query }),
+          body: formData,
         }
       );
 
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+
       const data = await response.json();
-      setAnswer(data.response || data.answer || "No reply");
+      setAnswer(data.response || data.answer || "No reply from AI");
     } catch (error) {
       console.error(error);
       setAnswer("Error connecting to AI server.");
