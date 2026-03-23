@@ -6,3 +6,4 @@ deep-translator
 pymupdf
 gunicorn
 ollama
+python-multipart
