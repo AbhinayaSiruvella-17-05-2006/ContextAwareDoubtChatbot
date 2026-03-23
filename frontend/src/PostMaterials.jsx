@@ -19,14 +19,14 @@ function PostMaterials({ setPage }) {
   };
 
   const clearChat = async () => {
-    await fetch("http://127.0.0.1:8000/clear-history", { method: "DELETE" });
+    await fetch("https://contextawaredoubtchatbot.onrender.com/clear-history", { method: "DELETE" });
     setChatHistory([]);
     setShowClearConfirm(false);
   };
 
   useEffect(() => {
     setMounted(true);
-    fetch("http://127.0.0.1:8000/history")
+    fetch("https://contextawaredoubtchatbot.onrender.com/history")
       .then(res => res.json())
       .then(data => {
         const formatted = [];
@@ -46,7 +46,7 @@ function PostMaterials({ setPage }) {
     setUploading(true);
     const formData = new FormData();
     formData.append("text", text);
-    const res = await fetch("http://127.0.0.1:8000/upload-text", { method: "POST", body: formData });
+    const res = await fetch("https://contextawaredoubtchatbot.onrender.com/upload-text", { method: "POST", body: formData });
     const data = await res.json();
     setNotes(data.content);
     setUploading(false);
@@ -56,7 +56,7 @@ function PostMaterials({ setPage }) {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
-    const res = await fetch("http://127.0.0.1:8000/upload-pdf", { method: "POST", body: formData });
+    const res = await fetch("https://contextawaredoubtchatbot.onrender.com/upload-pdf", { method: "POST", body: formData });
     const data = await res.json();
     setNotes(data.content);
   };
@@ -68,7 +68,7 @@ function PostMaterials({ setPage }) {
     formData.append("lang", lang);
     formData.append("selected_text", selectedText);
     formData.append("mode", "text");
-    const res = await fetch("http://127.0.0.1:8000/chat", { method: "POST", body: formData });
+    const res = await fetch("https://contextawaredoubtchatbot.onrender.com/chat", { method: "POST", body: formData });
     const data = await res.json();
     setChatHistory(prev => [...prev, { type: "user", text: question }, { type: "bot", text: data.answer }]);
     setQuestion("");
@@ -88,7 +88,7 @@ function PostMaterials({ setPage }) {
       formData.append("lang", lang);
       formData.append("selected_text", selectedText);
       formData.append("mode", "voice");
-      const res = await fetch("http://127.0.0.1:8000/chat", { method: "POST", body: formData });
+      const res = await fetch("https://contextawaredoubtchatbot.onrender.com/chat", { method: "POST", body: formData });
       const data = await res.json();
       setChatHistory(prev => [...prev, { type: "user", text: t }, { type: "bot", text: data.answer }]);
       const speech = new SpeechSynthesisUtterance(data.answer);
