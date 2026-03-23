@@ -13,7 +13,7 @@ function OnlineMaterials({ setPage }) {
 
     try {
       const response = await fetch(
-        "https://contextawaredoubtchatbot.onrender.com/ask", // adjust if needed
+        "https://contextawaredoubtchatbot.onrender.com/", // adjust if needed
         {
           method: "POST",
           headers: {
