@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-pymongo
-python-dotenv
-deep-translator
-pymupdf
-gunicorn
-ollama
-python-multipart
