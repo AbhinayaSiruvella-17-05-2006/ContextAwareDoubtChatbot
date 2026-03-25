@@ -59,7 +59,7 @@ useEffect(() => {
   localStorage.getItem("activeSessionId") || "default";
     setSessionId(storedSessionId);
 
-    fetch(`http://127.0.0.1:8000/history/${storedSessionId}`)
+    fetch(`https://contextawaredoubtchatbot.onrender.com/history/${storedSessionId}`)
       .then(res => res.json())
       .then(data => {
         if (data.messages && data.messages.length > 0) {
@@ -94,7 +94,7 @@ useEffect(() => {
     setIsTyping(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/chat", {
+      const res = await fetch("https://contextawaredoubtchatbot.onrender.com/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
