@@ -14,7 +14,7 @@ const ChatView = () => {
 }, []);
   const downloadChat = () => {
   const sessionId = localStorage.getItem("activeSessionId") || "default";
-  fetch(`http://127.0.0.1:8000/history/${sessionId}`)
+  fetch(`https://contextawaredoubtchatbot.onrender.com/history/${sessionId}`)
     .then(res => res.json())
     .then(data => {
       if (!data.messages) return;
