@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 40 25% 97%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 222 47% 11%;
+    --primary-foreground: 40 33% 98%;
+
+    --secondary: 40 25% 93%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 222 10% 45%;
+
+    --accent: 36 95% 54%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 89%;
+    --input: 40 15% 89%;
+    --ring: 36 95% 54%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --amber: 36 95% 54%;
+    --amber-light: 40 100% 95%;
+    --amber-glow: 36 100% 65%;
+    --navy: 222 47% 11%;
+    --navy-light: 222 30% 20%;
+    --cream: 40 33% 98%;
+    --cream-dark: 40 25% 93%;
+    --glass: 0 0% 100%;
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    --shadow-soft: 0 4px 20px -4px hsl(222 47% 11% / 0.08);
+    --shadow-elevated: 0 12px 40px -8px hsl(222 47% 11% / 0.12);
+    --shadow-glow: 0 0 30px hsl(36 95% 54% / 0.15);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-popover/80 backdrop-blur-xl border border-border/50;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--navy)), hsl(var(--amber)));
+  }
+
+  .gradient-amber {
+    background-image: linear-gradient(135deg, hsl(var(--amber)), hsl(var(--amber-glow)));
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .text-highlight {
+    background: linear-gradient(120deg, hsl(var(--amber-light)) 0%, hsl(var(--amber-light)) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 40%;
+    background-position: 0 85%;
+  }
+
+  .chatbot-bubble {
+    @apply rounded-2xl px-4 py-3;
+  }
+
+  .chatbot-bubble-user {
+    @apply chatbot-bubble gradient-amber text-primary;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chatbot-bubble-bot {
+    @apply chatbot-bubble bg-card border border-border;
+    border-bottom-left-radius: 4px;
+  }
+
+  .lesson-content p::selection,
+  .lesson-content span::selection {
+    background: hsl(var(--amber) / 0.3);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, hsl(var(--amber) / 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+}
