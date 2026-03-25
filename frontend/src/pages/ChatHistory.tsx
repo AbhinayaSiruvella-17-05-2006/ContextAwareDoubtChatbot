@@ -29,7 +29,7 @@ const ChatHistory = () => {
       const sessionId = localStorage.getItem(key);
       if (!sessionId) continue;
 
-      const res = await fetch(`http://127.0.0.1:8000/history/${sessionId}`);
+      const res = await fetch(`https://contextawaredoubtchatbot.onrender.com/history/${sessionId}`);
       const data = await res.json();
 
       if (data.messages && data.messages.length > 0) {
